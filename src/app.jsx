@@ -53,8 +53,11 @@ const App = () => {
         cell.readOnly ? e.preventDefault() : null
       }
       onCellsChanged={(changes) => {
+        // create a deep copy of grid array
         const grid = state.grid.map((row) => [...row])
-        changes.forEach(({ cell, row, col, value }) => {
+
+        changes.forEach((change) => {
+          const { /*cell,*/ row, col, value } = change
           grid[row][col] = { ...grid[row][col], value }
         })
         setState({ grid })
